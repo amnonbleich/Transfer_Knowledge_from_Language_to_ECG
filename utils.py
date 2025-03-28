@@ -356,6 +356,8 @@ def sentence_calc_bleu_n(pred, label, n):
     return score
 
 def calc_bleu_n(pred, label, n):
+    label = [[lab.split()] for lab in label]
+    pred = [p.split() for p in pred]
     if n == 1:
         score = nltk.translate.bleu_score.corpus_bleu(label, pred, weights=(1, 0, 0, 0))
     elif n == 2:
